@@ -63,43 +63,63 @@ public class ActionButtonController implements IActionButtons {
     public void setActionDigitalPanelBTN(DigitalPanelBtn dBtn) {
         switch (dBtn) {
             case _0: {
-                System.out.println("0");
+                logger.info("0");
                 break;
             }
             case _1: {
-                System.out.println("1");
+                logger.info("1");
                 break;
             }
             case _2: {
-                System.out.println("2");
+                logger.info("2");
                 break;
             }
             case _3: {
-                System.out.println("3");
+                logger.info("3");
                 break;
             }
             case _4: {
-                System.out.println("4");
+                logger.info("4");
                 break;
             }
             case _5: {
-                System.out.println("5");
+                logger.info("5");
                 break;
             }
             case _6: {
-                System.out.println("6");
+                logger.info("6");
                 break;
             }
             case _7: {
-                System.out.println("7");
+                logger.info("7");
                 break;
             }
             case _8: {
-                System.out.println("8");
+                logger.info("8");
                 break;
             }
             case _9: {
-                System.out.println("9");
+                logger.info("9");
+                break;
+            }
+            case _A: {
+                logger.info("A");
+                break;
+            }
+            case _B: {
+                logger.info("B");
+                break;
+            }
+            case _C: {
+                logger.info("C");
+                break;
+            }
+            case _D: {
+                logger.info("D");
+                break;
+            }
+            case _F: {
+                logger.info("F");
                 break;
             }
 

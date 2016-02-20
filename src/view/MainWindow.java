@@ -26,7 +26,7 @@ public class MainWindow extends JFrame {
     ActionButtonController actionBtnCont = ActionButtonController.INSTANCE;
 
     public void init(){
-        setTitle("Эмулятор учебной микроЭВМ УМПК-580");
+        setTitle("Эмулятор микроЭВМ УМПК-580(I8080)");
         setSize(WIDTH_WINDOW,HEIGHT_WINDOW);
         setResizable(false);
         setLocationRelativeTo(null);

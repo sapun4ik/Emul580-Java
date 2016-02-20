@@ -13,9 +13,15 @@ public class ActionHotKeyButtonController  {
     public void hotKey(int keyCode){
 
         switch (keyCode){
+            //setActionCommandBTN
             case KeyEvent.VK_SHIFT:
             {
                 actionBtnCont.setActionCommandBTN(CommandsBtn.FINDING_ADDRESSES);
+                break;
+            }
+            case KeyEvent.VK_ALT:
+            {
+                actionBtnCont.setActionCommandBTN(CommandsBtn.FINDING_REGISTER);
                 break;
             }
             case KeyEvent.VK_EQUALS:
@@ -30,6 +36,22 @@ public class ActionHotKeyButtonController  {
                 actionBtnCont.setActionCommandBTN(CommandsBtn.RELOADING);
                 break;
             }
+            case KeyEvent.VK_Q:
+            {
+                actionBtnCont.setActionCommandBTN(CommandsBtn.STEP_TEAM);
+                break;
+            }
+            case KeyEvent.VK_W:
+            {
+                actionBtnCont.setActionCommandBTN(CommandsBtn.STEP_CYCLE);
+                break;
+            }
+            case KeyEvent.VK_F5:
+            {
+                actionBtnCont.setActionCommandBTN(CommandsBtn.START);
+                break;
+            }
+            case 192:
             case KeyEvent.VK_QUOTE:
             case KeyEvent.VK_DEAD_TILDE:
             {
@@ -40,6 +62,32 @@ public class ActionHotKeyButtonController  {
             case KeyEvent.VK_MINUS:
             {
                 actionBtnCont.setActionCommandBTN(CommandsBtn.REDUCE);
+                break;
+            }
+            //setActionDigitalPanelBTN
+            case KeyEvent.VK_A:
+            {
+                actionBtnCont.setActionDigitalPanelBTN(DigitalPanelBtn._A);
+                break;
+            }
+            case KeyEvent.VK_B:
+            {
+                actionBtnCont.setActionDigitalPanelBTN(DigitalPanelBtn._B);
+                break;
+            }
+            case KeyEvent.VK_C:
+            {
+                actionBtnCont.setActionDigitalPanelBTN(DigitalPanelBtn._C);
+                break;
+            }
+            case KeyEvent.VK_D:
+            {
+                actionBtnCont.setActionDigitalPanelBTN(DigitalPanelBtn._D);
+                break;
+            }
+            case KeyEvent.VK_F:
+            {
+                actionBtnCont.setActionDigitalPanelBTN(DigitalPanelBtn._F);
                 break;
             }
             case KeyEvent.VK_NUMPAD0:
