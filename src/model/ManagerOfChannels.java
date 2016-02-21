@@ -13,7 +13,7 @@ public class ManagerOfChannels {
     MainWindowController mwc = MainWindowController.INSTANCE;
 
     private ManagerOfChannels(){}
-    public void changeMagistralData(byte tempDec) {
+    public void changeMagistralData(short tempDec) {
         for (int i = 0; i < 8; i++) {
             if (converters.GetByte(tempDec, i)) {
                 try {

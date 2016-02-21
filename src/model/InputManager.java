@@ -60,7 +60,7 @@ public class InputManager {
                 AddressValueArray[1] = AddressValueArray[2];
                 AddressValueArray[2] = AddressValueArray[3];
                 AddressValueArray[3] = dpBTN;
-                String temp = AddressValueArray[0].text + AddressValueArray[1].text + AddressValueArray[2].text + AddressValueArray[3].text;
+                String temp = (AddressValueArray[0].text + AddressValueArray[1].text + AddressValueArray[2].text + AddressValueArray[3].text).toLowerCase();
                 logger.info("Temp addresses: {}", temp);
                 if (data.process == Processes.FINDING_ADDRESSES)
                 {
@@ -100,7 +100,7 @@ public class InputManager {
                 AddressValueArray[5] = dpBTN;
                 mwc.digitalPanel[4].setIcon(mwc.digitalPanel[5].getIcon());
                 mwc.digitalPanel[5].setIcon(img.getImage(ImageResources.getImageResources(dpBTN)));
-                Byte value = Byte.parseByte(AddressValueArray[4].text+AddressValueArray[5].text,16);
+                Short value = Short.parseShort(AddressValueArray[4].text+AddressValueArray[5].text,16);
                 logger.info("Value(AddressValueArray[4]+AddressValueArray[5]) to Byte: {}\n",value);
                 moc.changeMagistralData(value);
                 mwc.digitalPanelCounter--;

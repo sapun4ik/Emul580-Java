@@ -23,7 +23,7 @@ public class Converters {
         }
         return temp;
     }
-    public static boolean GetByte(byte val, int num)
+    public static boolean GetByte(short val, int num)
     {
         return (((val >> num) & 1) > 0);
     }
