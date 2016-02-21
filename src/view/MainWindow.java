@@ -1,12 +1,8 @@
 package view;
 
-import controller.ActionButtonController;
-import controller.ActionHotKeyButtonController;
-import controller.CommandsBtn;
-import controller.DigitalPanelBtn;
+import controller.*;
 import model.ImageResources;
 import model.Images;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -16,14 +12,14 @@ import java.awt.event.*;
  * Created by Анатолий on 18.02.2016.
  */
 public class MainWindow extends JFrame {
-    JPanel mainPanel = new JPanel();
-    JPanel leftTopPanel;
-    JPanel rightTopPanel;
-    JLabel statusLabel = new JLabel();
+    JPanel mainPanel;
+    JLabel statusLabel;
     final int WIDTH_WINDOW = 650;
     final int HEIGHT_WINDOW = 450;
     Images img = Images.INSTANCE;
+    MainWindowController mwc = MainWindowController.INSTANCE;
     ActionButtonController actionBtnCont = ActionButtonController.INSTANCE;
+
 
     public void init(){
         setTitle("Эмулятор микроЭВМ УМПК-580(I8080)");
@@ -39,6 +35,7 @@ public class MainWindow extends JFrame {
         }
         setLayout( new BorderLayout());
         //*MainPanel
+        mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         add(mainPanel,BorderLayout.CENTER);
         GridBagConstraints c = new GridBagConstraints();
@@ -66,6 +63,7 @@ public class MainWindow extends JFrame {
         addRightCenterPanel(c);
         addLeftBottomPanel(c);
         addRightBottomPanel(c);
+        statusLabel = new JLabel();
         addStatusPanel();
         setVisible(true);
     }
@@ -85,9 +83,9 @@ public class MainWindow extends JFrame {
         c.gridx = 0;
         c.gridy = 0;
         c.weightx = 0.6;
-        leftTopPanel = panel;
         mainPanel.add(panel,c);
     }
+    //magistralData
     private void addRightTopPanel(GridBagConstraints c){
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1,8));
@@ -95,7 +93,8 @@ public class MainWindow extends JFrame {
         for (int i =0; i<8;i++){
             try {
                 JLabel l = new JLabel(Images.INSTANCE.getImage(ImageResources.OFF));
-                panel.add("te"+i,l);
+                mwc.magistralData[i] = l;
+                panel.add(l);
             } catch (NoImageException e) {
                 e.printStackTrace();
             }
@@ -103,7 +102,6 @@ public class MainWindow extends JFrame {
         c.gridx = 1;
         c.gridy = 0;
         c.weightx = 0.4;
-        rightTopPanel = panel;
         mainPanel.add(panel,c);
     }
     private void addLeftCenterPanel(GridBagConstraints c)
@@ -212,10 +210,11 @@ public class MainWindow extends JFrame {
         JPanel address = new JPanel();
         address.setBorder(BorderFactory.createTitledBorder("Адрес"));
         address.setLayout(new GridLayout(1,4));
-        address.add(img.getImage(ImageResources._H,0,3,0,3));
-        address.add(img.getImage(ImageResources._A,0,3,0,3));
-        address.add(img.getImage(ImageResources._4,0,3,0,3));
-        address.add(img.getImage(ImageResources._A,0,3,0,3));
+        address.add(mwc.digitalPanel[0] = img.getImage(ImageResources._H,0,3,0,3));
+
+        address.add(mwc.digitalPanel[1] = img.getImage(ImageResources._A,0,3,0,3));
+        address.add(mwc.digitalPanel[2] = img.getImage(ImageResources._4,0,3,0,3));
+        address.add(mwc.digitalPanel[3] = img.getImage(ImageResources._A,0,3,0,3));
         cc.gridx = 0;
         cc.gridy = 0;
         cc.weightx = 0.6;
@@ -224,8 +223,8 @@ public class MainWindow extends JFrame {
         JPanel value = new JPanel();
         value.setLayout(new GridLayout(1,2));
         value.setBorder(BorderFactory.createTitledBorder("Значение"));
-        value.add(img.getImage(ImageResources._l,0,4,0,4));
-        value.add(img.getImage(ImageResources._0,0,4,0,4));
+        value.add(mwc.digitalPanel[4] = img.getImage(ImageResources._l,0,4,0,4));
+        value.add(mwc.digitalPanel[5] = img.getImage(ImageResources._0,0,4,0,4));
 
         cc.gridx = 1;
         cc.gridy = 0;
@@ -238,32 +237,31 @@ public class MainWindow extends JFrame {
         mainPanel.add(panel,c);
     }
     private void addLeftBottomPanel(GridBagConstraints c){
+        //Create mainPanel(leftPanel,rightPanel)
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Команды"));
         GridBagConstraints cc = new GridBagConstraints();
-
+        //Create mainPanel -> leftPanel
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new GridLayout(4,2));
-        leftPanel.add(getCommandsButton(CommandsBtn.RELOADING,163,45));
-        leftPanel.add(getCommandsButton(CommandsBtn.STEP_CYCLE,163,45));
-        leftPanel.add(getCommandsButton(CommandsBtn.STEP_TEAM,163,45));
-        leftPanel.add(getCommandsButton(CommandsBtn.PROGRAM_COUNTER,163,45));
-        leftPanel.add(getCommandsButton(CommandsBtn.FINDING_REGISTER,163,45));
-        leftPanel.add(getCommandsButton(CommandsBtn.FINDING_ADDRESSES,163,45));
-        leftPanel.add(getCommandsButton(CommandsBtn.REDUCE,163,45));
-        leftPanel.add(getCommandsButton(CommandsBtn.RECORD,163,45));
+        leftPanel.add(getCommandsButton(Processes.RELOADING,163,45));
+        leftPanel.add(getCommandsButton(Processes.STEP_CYCLE,163,45));
+        leftPanel.add(getCommandsButton(Processes.STEP_TEAM,163,45));
+        leftPanel.add(getCommandsButton(Processes.PROGRAM_COUNTER,163,45));
+        leftPanel.add(getCommandsButton(Processes.FINDING_REGISTER,163,45));
+        leftPanel.add(getCommandsButton(Processes.FINDING_ADDRESSES,163,45));
+        leftPanel.add(getCommandsButton(Processes.REDUCE,163,45));
+        leftPanel.add(getCommandsButton(Processes.RECORD,163,45));
         cc.gridx = 0;
         cc.gridy = 0;
         cc.weightx = 0.8;
         panel.add(leftPanel,cc);
-
+        //Create mainPanel -> rightPanel
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new GridLayout(2,1));
-
-        rightPanel.add(getCommandsButton(CommandsBtn.START,90,90));
-        rightPanel.add(getCommandsButton(CommandsBtn.STOP,90,90));
-
+        rightPanel.add(getCommandsButton(Processes.START,90,90));
+        rightPanel.add(getCommandsButton(Processes.STOP,90,90));
         cc.gridx = 1;
         cc.gridy = 0;
         cc.weightx = 0.2;
@@ -276,6 +274,7 @@ public class MainWindow extends JFrame {
     }
 
     private void addRightBottomPanel(GridBagConstraints c){
+        //Create mainPanel
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4,4));
         panel.setBorder(BorderFactory.createTitledBorder("Цифровая панель"));
@@ -302,22 +301,24 @@ public class MainWindow extends JFrame {
 
     }
     private void addStatusPanel(){
+        //Create mainPanel(stPanel,mBar)
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-
+        //Create mainPanel -> stPanel
         JPanel stPanel = new JPanel();
+        stPanel.setLayout(new BorderLayout());
         stPanel.setBorder(BorderFactory.createTitledBorder("Статус"));
-        stPanel.add(statusLabel);
-
+        statusLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
+        statusLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        statusLabel.setText("Начало работы");
+        stPanel.add(statusLabel,BorderLayout.WEST);
         panel.add(stPanel, BorderLayout.CENTER);
-
+        //Create mainPanel -> mBar
         JMenuBar mBar = new JMenuBar();
         mBar.setBackground(new Color(238,238,238));
         mBar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         JMenu menu = new JMenu("Файл");
         menu.setPreferredSize(new Dimension(45, 20));
-
-
         mBar.add(menu);
         menu.add(new JMenuItem("Горячие клавиши"));
         menu.add(new JMenuItem("Команды"));
@@ -325,10 +326,11 @@ public class MainWindow extends JFrame {
         menu.add(new JSeparator());
         menu.add(new JMenuItem("Выход"));
         panel.add(mBar, BorderLayout.EAST);
+        mwc.status = statusLabel;
         add(panel,BorderLayout.SOUTH);
     }
 
-    private JButton getCommandsButton(CommandsBtn cBtn, int width, int height) {
+    private JButton getCommandsButton(Processes cBtn, int width, int height) {
         JButton btn = getButton(cBtn.text,width,height);
         btn.addActionListener(e -> actionBtnCont.setActionCommandBTN(cBtn));
         return btn;
@@ -352,7 +354,6 @@ public class MainWindow extends JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn.setBackground(new Color(190,230,253));
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btn.setBackground(new Color(221,221,221));
             }

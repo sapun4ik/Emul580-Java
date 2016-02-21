@@ -16,52 +16,52 @@ public class ActionHotKeyButtonController  {
             //setActionCommandBTN
             case KeyEvent.VK_SHIFT:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.FINDING_ADDRESSES);
+                actionBtnCont.setActionCommandBTN(Processes.FINDING_ADDRESSES);
                 break;
             }
             case KeyEvent.VK_ALT:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.FINDING_REGISTER);
+                actionBtnCont.setActionCommandBTN(Processes.FINDING_REGISTER);
                 break;
             }
             case KeyEvent.VK_EQUALS:
             case KeyEvent.VK_PLUS:
             case KeyEvent.VK_ADD:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.RECORD);
+                actionBtnCont.setActionCommandBTN(Processes.RECORD);
                 break;
             }
             case KeyEvent.VK_ESCAPE:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.RELOADING);
+                actionBtnCont.setActionCommandBTN(Processes.RELOADING);
                 break;
             }
             case KeyEvent.VK_Q:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.STEP_TEAM);
+                actionBtnCont.setActionCommandBTN(Processes.STEP_TEAM);
                 break;
             }
             case KeyEvent.VK_W:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.STEP_CYCLE);
+                actionBtnCont.setActionCommandBTN(Processes.STEP_CYCLE);
                 break;
             }
             case KeyEvent.VK_F5:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.START);
+                actionBtnCont.setActionCommandBTN(Processes.START);
                 break;
             }
             case 192:
             case KeyEvent.VK_QUOTE:
             case KeyEvent.VK_DEAD_TILDE:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.PROGRAM_COUNTER);
+                actionBtnCont.setActionCommandBTN(Processes.PROGRAM_COUNTER);
                 break;
             }
             case KeyEvent.VK_SUBTRACT:
             case KeyEvent.VK_MINUS:
             {
-                actionBtnCont.setActionCommandBTN(CommandsBtn.REDUCE);
+                actionBtnCont.setActionCommandBTN(Processes.REDUCE);
                 break;
             }
             //setActionDigitalPanelBTN

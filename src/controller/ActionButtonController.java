@@ -1,20 +1,21 @@
 package controller;
 
+import model.Commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Created by Анатолий on 20.02.2016.
  */
-public class ActionButtonController implements IActionButtons {
+public class ActionButtonController {
     private static Logger logger = LoggerFactory.getLogger(ActionButtonController.class);
     public static final ActionButtonController INSTANCE = new ActionButtonController();
+    Commands commands = Commands.INSTANCE;
     private ActionButtonController(){
 
     }
 
-    @Override
-    public void setActionCommandBTN(CommandsBtn CBtn) {
+    public void setActionCommandBTN(Processes CBtn) {
         switch (CBtn) {
             case START: {
                 logger.info("Start");
@@ -26,6 +27,7 @@ public class ActionButtonController implements IActionButtons {
             }
             case FINDING_ADDRESSES: {
                 logger.info("Finding addresses");
+                commands.findingAddresses();
                 break;
             }
             case FINDING_REGISTER: {
@@ -59,7 +61,6 @@ public class ActionButtonController implements IActionButtons {
         }
     }
 
-    @Override
     public void setActionDigitalPanelBTN(DigitalPanelBtn dBtn) {
         switch (dBtn) {
             case _0: {

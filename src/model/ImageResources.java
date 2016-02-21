@@ -12,6 +12,7 @@ public enum ImageResources {
     _4("_4.png"),
     _H("_H.png"),
     _l("l.png"),
+    _NULL("_null.png"),
     _A("_A.png");
     public final String text;
     ImageResources(final String text){

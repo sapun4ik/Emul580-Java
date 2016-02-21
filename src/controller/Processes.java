@@ -3,7 +3,7 @@ package controller;
 /**
  * Created by Анатолий on 20.02.2016.
  */
-public enum CommandsBtn {
+public enum Processes {
         START("Старт"),
         STOP("Стоп"),
         REDUCE("Уменьшить"),
@@ -16,7 +16,7 @@ public enum CommandsBtn {
         STEP_CYCLE("Шаг цикла");
 
         public final String text;
-    CommandsBtn(final String text){
+    Processes(final String text){
             this.text = text;
         }
 }
