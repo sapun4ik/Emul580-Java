@@ -1,11 +1,16 @@
 package model;
 
-import controller.DigitalPanelBtn;
+import controller.DigitalPanelButton;
 import controller.MainWindowController;
 import controller.Processes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import view.NoImageException;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Анатолий on 21.02.2016.
@@ -18,11 +23,24 @@ public class InputManager {
     Memory memory = Memory.INSTANCE;
     ManagerOfChannels moc = ManagerOfChannels.INSTANCE;
     private static Logger logger = LoggerFactory.getLogger(InputManager.class);
-    public static DigitalPanelBtn[] AddressValueArray;
+    public static DigitalPanelButton[] AddressValueArray;
     private InputManager(){
-        AddressValueArray = new DigitalPanelBtn[6];
+        AddressValueArray = new DigitalPanelButton[6];
     }
-    public void setData(DigitalPanelBtn dpBTN) throws NoImageException {
+    private boolean visible = true;
+    private Timer timer;
+    private void setAnimate(boolean value, int element){
+        if(!value) {
+            if(timer != null)timer.stop();
+            mwc.digitalPanel[element].setVisible(true);
+        }
+        else {
+            timer = new Timer(500, e -> mwc.digitalPanel[element].setVisible(visible = !visible));
+            timer.start();
+        }
+    }
+    public void setData(DigitalPanelButton dpBTN) throws NoImageException {
+
         mwc.digitalPanelCounter++;
         switch(mwc.digitalPanelCounter)
         {
@@ -30,6 +48,7 @@ public class InputManager {
             {
                 mwc.digitalPanel[3].setIcon(img.getImage(ImageResources.getImageResources(dpBTN)));
                 AddressValueArray[3] = dpBTN;
+                setAnimate(true,3);
                 break;
             }
             case 2:
@@ -68,13 +87,13 @@ public class InputManager {
                     logger.info("Temp addresses(Short.parseShort): {}",data.PC);
                     logger.info("Data is memory: {} from: {}",memory.RAM.get(temp), temp);
                     if(memory.RAM.get(temp) == 0){
-                        AddressValueArray[4] = DigitalPanelBtn._0;
-                        AddressValueArray[5] = DigitalPanelBtn._0;
+                        AddressValueArray[4] = DigitalPanelButton._0;
+                        AddressValueArray[5] = DigitalPanelButton._0;
                         mwc.digitalPanel[4].setIcon(img.getImage(ImageResources.getImageResources(AddressValueArray[4])));
                         mwc.digitalPanel[5].setIcon(img.getImage(ImageResources.getImageResources(AddressValueArray[5])));
                     }else {
-                        AddressValueArray[4] = DigitalPanelBtn.getDigitalPanelBtn(String.valueOf(memory.RAM.get(temp)).charAt(0));
-                        AddressValueArray[5] = DigitalPanelBtn.getDigitalPanelBtn(String.valueOf(memory.RAM.get(temp)).charAt(1));
+                        AddressValueArray[4] = DigitalPanelButton.getDigitalPanelBtn(String.valueOf(memory.RAM.get(temp)).charAt(0));
+                        AddressValueArray[5] = DigitalPanelButton.getDigitalPanelBtn(String.valueOf(memory.RAM.get(temp)).charAt(1));
                         mwc.digitalPanel[4].setIcon(img.getImage(ImageResources.getImageResources(AddressValueArray[4])));
                         mwc.digitalPanel[5].setIcon(img.getImage(ImageResources.getImageResources(AddressValueArray[5])));
                     }
@@ -83,6 +102,8 @@ public class InputManager {
                     moc.changeMagistralData(value);
                 }
                 moc.changeMagistralAdress(temp);
+                setAnimate(false,3);
+                setAnimate(true,5);
                 break;
             }
             case 5:
@@ -104,6 +125,7 @@ public class InputManager {
                 logger.info("Value(AddressValueArray[4]+AddressValueArray[5]) to Byte: {}\n",value);
                 moc.changeMagistralData(value);
                 mwc.digitalPanelCounter--;
+                setAnimate(false,5);
                 break;
             }
             case 7:

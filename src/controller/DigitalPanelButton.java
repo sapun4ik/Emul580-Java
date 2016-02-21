@@ -1,11 +1,9 @@
 package controller;
 
-import model.ImageResources;
-
 /**
  * Created by Анатолий on 20.02.2016.
  */
-public enum DigitalPanelBtn {
+public enum DigitalPanelButton {
     _0("0"),
     _1("1"),
     _2("2"),
@@ -23,15 +21,15 @@ public enum DigitalPanelBtn {
     _E("E"),
     _F("F");
 
-    public static DigitalPanelBtn getDigitalPanelBtn(Character al)
+    public static DigitalPanelButton getDigitalPanelBtn(Character al)
     {
-        for (DigitalPanelBtn val : DigitalPanelBtn.values()) {
+        for (DigitalPanelButton val : DigitalPanelButton.values()) {
             if (String.valueOf(al) == val.text) return val;
         }
         return null;
     }
     public final String text;
-    DigitalPanelBtn(final String text){
+    DigitalPanelButton(final String text){
         this.text = text;
     }
 }

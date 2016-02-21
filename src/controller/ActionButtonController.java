@@ -65,7 +65,7 @@ public class ActionButtonController {
         }
     }
 
-    public void setActionDigitalPanelBTN(DigitalPanelBtn dBtn) {
+    public void setActionDigitalPanelBTN(DigitalPanelButton dBtn) {
         if (mwc.digitalPanelCounter != 6)
         {
             try {

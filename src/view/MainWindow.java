@@ -113,7 +113,7 @@ public class MainWindow extends JFrame {
         //Create LeftCenterPanel -> leftPanel(leftTopPanelChild,leftCenterPanelChild,leftBottomPanelChild)
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
-        leftPanel.setBorder(BorderFactory.createTitledBorder("Input port"));
+        leftPanel.setBorder(BorderFactory.createTitledBorder("Порт ввода"));
         //Create LeftCenterPanel -> leftPanel -> leftTopPanelChild
         JPanel leftTopPanelChild = new JPanel();
         leftTopPanelChild.setLayout(new GridLayout(1,8));
@@ -279,22 +279,22 @@ public class MainWindow extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4,4));
         panel.setBorder(BorderFactory.createTitledBorder("Цифровая панель"));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._C,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._D,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._E,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._F,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._8,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._9,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._A,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._B,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._4,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._5,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._6,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._7,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._0,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._1,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._2,45,45));
-        panel.add(getDigitalPanelButton(DigitalPanelBtn._3,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._C,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._D,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._E,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._F,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._8,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._9,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._A,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._B,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._4,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._5,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._6,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._7,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._0,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._1,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._2,45,45));
+        panel.add(getDigitalPanelButton(DigitalPanelButton._3,45,45));
         c.gridx = 1;
         c.gridy = 2;
         c.weightx = 0.4;
@@ -336,7 +336,7 @@ public class MainWindow extends JFrame {
         btn.addActionListener(e -> actionBtnCont.setActionCommandBTN(cBtn));
         return btn;
     }
-    private JButton getDigitalPanelButton(DigitalPanelBtn dBtn, int width, int height) {
+    private JButton getDigitalPanelButton(DigitalPanelButton dBtn, int width, int height) {
         JButton btn = getButton(dBtn.text,width,height);
         btn.addActionListener(e -> actionBtnCont.setActionDigitalPanelBTN(dBtn));
         return btn;

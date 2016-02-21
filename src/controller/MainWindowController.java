@@ -17,6 +17,6 @@ public class MainWindowController {
         magistralData = new JLabel[8];
         digitalPanel = new JLabel[6];
         magistralAddreses = new JLabel[16];
-        digitalPanelCounter = 0;
+        digitalPanelCounter = 6;
     }
 }
