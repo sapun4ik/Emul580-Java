@@ -1,5 +1,7 @@
 package controller;
 
+import model.ImageResources;
+
 /**
  * Created by Анатолий on 20.02.2016.
  */
@@ -21,6 +23,13 @@ public enum DigitalPanelBtn {
     _E("E"),
     _F("F");
 
+    public static DigitalPanelBtn getDigitalPanelBtn(Character al)
+    {
+        for (DigitalPanelBtn val : DigitalPanelBtn.values()) {
+            if (String.valueOf(al) == val.text) return val;
+        }
+        return null;
+    }
     public final String text;
     DigitalPanelBtn(final String text){
         this.text = text;

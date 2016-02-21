@@ -27,4 +27,8 @@ public class Converters {
     {
         return (((val >> num) & 1) > 0);
     }
+    public static boolean GetUShort(int val, int num)
+    {
+        return (((val >> num) & 1) > 0);
+    }
 }

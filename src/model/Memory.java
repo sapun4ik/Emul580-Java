@@ -14,7 +14,7 @@ public class Memory {
         for (int i = 0; i <= 0xFFFF; i++)
         {
             String temp = converters.UInt16ToHex(i);
-            RAM.put(temp, (byte)0);
+            RAM.put(temp, (byte)00);
         }
 
     }

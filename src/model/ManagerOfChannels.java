@@ -13,7 +13,7 @@ public class ManagerOfChannels {
     MainWindowController mwc = MainWindowController.INSTANCE;
 
     private ManagerOfChannels(){}
-    public void ChangeMagistralData(byte tempDec) {
+    public void changeMagistralData(byte tempDec) {
         for (int i = 0; i < 8; i++) {
             if (converters.GetByte(tempDec, i)) {
                 try {
@@ -27,7 +27,29 @@ public class ManagerOfChannels {
                 } catch (NoImageException e) {
                     e.printStackTrace();
                 }
-
+            }
+        }
+    }
+    public void changeMagistralAdress(String tempHex)
+    {
+        int tempDec = Integer.parseInt(tempHex, 16);
+        for (int i = 0; i < 16; i++)
+        {
+            if (converters.GetUShort(tempDec, i))
+            {
+                try {
+                    mwc.magistralAddreses[15-i].setIcon(img.getImage(ImageResources.ON));
+                } catch (NoImageException e) {
+                    e.printStackTrace();
+                }
+            }
+            else
+            {
+                try {
+                    mwc.magistralAddreses[15-i].setIcon(img.getImage(ImageResources.OFF));
+                } catch (NoImageException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

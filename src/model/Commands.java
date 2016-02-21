@@ -12,12 +12,12 @@ public class Commands {
     MainWindowController mwc = MainWindowController.INSTANCE;
     ManagerOfChannels moc = ManagerOfChannels.INSTANCE;
     Images img = Images.INSTANCE;
-
+    Data data = Data.INSTANCE;
     private Commands(){}
     public void findingAddresses(){
-        moc.ChangeMagistralData((byte)0);
-        mwc.process = Processes.FINDING_ADDRESSES;
-        mwc.status.setText(mwc.process.text);
+        moc.changeMagistralData((byte)0);
+        data.process = Processes.FINDING_ADDRESSES;
+        mwc.status.setText(data.process.text);
         for (int i = 0; i < 6; i++ )
         {
             if (i < 4)
@@ -33,7 +33,6 @@ public class Commands {
                     e.printStackTrace();
                 }
         }
-       // changeMagistral.ChangeMagistralAdress(null, this);
-        //numberOnInput.countClick = 0;
+        mwc.digitalPanelCounter = 0;
     }
 }

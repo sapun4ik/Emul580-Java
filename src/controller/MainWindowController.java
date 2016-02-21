@@ -7,12 +7,16 @@ import javax.swing.*;
  */
 public class MainWindowController {
     final static public MainWindowController INSTANCE = new MainWindowController();
-    public Processes process = Processes.STOP;
+
     public JLabel status;
     public JLabel[] magistralData;
+    public JLabel[] magistralAddreses;
     public JLabel[] digitalPanel;
+    public int digitalPanelCounter;
     private MainWindowController(){
         magistralData = new JLabel[8];
         digitalPanel = new JLabel[6];
+        magistralAddreses = new JLabel[16];
+        digitalPanelCounter = 0;
     }
 }

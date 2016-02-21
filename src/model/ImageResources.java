@@ -1,5 +1,7 @@
 package model;
 
+import controller.DigitalPanelBtn;
+
 /**
  * Created by Анатолий on 20.02.2016.
  */
@@ -11,10 +13,17 @@ public enum ImageResources {
     _0("_0.png"),
     _4("_4.png"),
     _H("_H.png"),
-    _l("l.png"),
+    _L("l.png"),
     _NULL("_null.png"),
     _A("_A.png");
     public final String text;
+    public static ImageResources getImageResources(DigitalPanelBtn dpB)
+    {
+        for (ImageResources val : ImageResources.values()) {
+            if (dpB.name() == val.name()) return val;
+        }
+       return null;
+    }
     ImageResources(final String text){
         this.text = text;
     }

@@ -75,7 +75,8 @@ public class MainWindow extends JFrame {
             try {
                 JLabel l = new JLabel(Images.INSTANCE.getImage(ImageResources.OFF));
                 l.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 1));
-                panel.add("te"+i,l);
+                mwc.magistralAddreses[i] = l;
+                panel.add(l);
             } catch (NoImageException e) {
                 e.printStackTrace();
             }
@@ -223,7 +224,7 @@ public class MainWindow extends JFrame {
         JPanel value = new JPanel();
         value.setLayout(new GridLayout(1,2));
         value.setBorder(BorderFactory.createTitledBorder("Значение"));
-        value.add(mwc.digitalPanel[4] = img.getImage(ImageResources._l,0,4,0,4));
+        value.add(mwc.digitalPanel[4] = img.getImage(ImageResources._L,0,4,0,4));
         value.add(mwc.digitalPanel[5] = img.getImage(ImageResources._0,0,4,0,4));
 
         cc.gridx = 1;
