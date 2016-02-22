@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Objects;
+
 /**
  * Created by Анатолий on 20.02.2016.
  */
@@ -24,7 +26,7 @@ public enum DigitalPanelButton {
     public static DigitalPanelButton getDigitalPanelBtn(Character al)
     {
         for (DigitalPanelButton val : DigitalPanelButton.values()) {
-            if (String.valueOf(al) == val.text) return val;
+            if (Objects.equals(String.valueOf(al).toUpperCase(), val.text)) return val;
         }
         return null;
     }

@@ -80,6 +80,11 @@ public class ActionHotKeyButtonController  {
                 actionBtnCont.setActionDigitalPanelBTN(DigitalPanelButton._C);
                 break;
             }
+            case KeyEvent.VK_E:
+            {
+                actionBtnCont.setActionDigitalPanelBTN(DigitalPanelButton._E);
+                break;
+            }
             case KeyEvent.VK_D:
             {
                 actionBtnCont.setActionDigitalPanelBTN(DigitalPanelButton._D);

@@ -60,6 +60,11 @@ public class ActionButtonController {
             }
             case RECORD: {
                 logger.info("Record");
+                try {
+                    commands.record();
+                } catch (NoImageException e) {
+                    e.printStackTrace();
+                }
                 break;
             }
         }

@@ -2,6 +2,8 @@ package model;
 
 import controller.DigitalPanelButton;
 
+import java.util.Objects;
+
 /**
  * Created by Анатолий on 20.02.2016.
  */
@@ -34,7 +36,7 @@ public enum ImageResources {
     public static ImageResources getImageResources(DigitalPanelButton dpB)
     {
         for (ImageResources val : ImageResources.values()) {
-            if (dpB.name() == val.name()) return val;
+            if (Objects.equals(dpB.name(), val.name())) return val;
         }
        return null;
     }

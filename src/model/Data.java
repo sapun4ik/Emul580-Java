@@ -1,5 +1,6 @@
 package model;
 
+import controller.DigitalPanelButton;
 import controller.Processes;
 
 /**
@@ -19,10 +20,11 @@ public class Data {
     public static byte E; // Регистр
     public static byte H; // Регистр
     public static byte L; // Регистр
-    public static int PC = 0x800; // Счетчик команд
+    public int PC = 0x800; // Счетчик команд
     public static short PSW; //  — регистр флагов
     public static short SP = 0xfb0; // указатель стека 4016
     public static boolean PC_Flag;
     public static int numberReg;
     public static boolean executionProgramms = false;
+    public DigitalPanelButton[] addressValueArray = new DigitalPanelButton[6];
 }
