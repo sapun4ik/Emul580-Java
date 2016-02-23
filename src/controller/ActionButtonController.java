@@ -12,9 +12,9 @@ import view.NoImageException;
 public class ActionButtonController {
     private static Logger logger = LoggerFactory.getLogger(ActionButtonController.class);
     public static final ActionButtonController INSTANCE = new ActionButtonController();
-    Commands commands = Commands.INSTANCE;
-    InputManager inputManager = InputManager.INSTANCE;
-    MainWindowController mwc = MainWindowController.INSTANCE;
+    private Commands commands = Commands.INSTANCE;
+    private InputManager inputManager = InputManager.INSTANCE;
+    private MainWindowController mwc = MainWindowController.INSTANCE;
     private ActionButtonController(){
 
     }
@@ -44,6 +44,7 @@ public class ActionButtonController {
             }
             case REDUCE: {
                 logger.info("Reduce");
+                commands.reduce();
                 break;
             }
             case STEP_TEAM: {
@@ -54,8 +55,8 @@ public class ActionButtonController {
                 logger.info("Reloading");
                 break;
             }
-            case STEP_CYCLE:
-                logger.info("Step cycle");{
+            case STEP_CYCLE:{
+                logger.info("Step cycle");
                 break;
             }
             case RECORD: {

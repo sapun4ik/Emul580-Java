@@ -17,7 +17,6 @@ public class ManagerOfChannels {
     private MainWindowController mwc = MainWindowController.INSTANCE;
     private Data data = Data.INSTANCE;
     private Memory memory = Memory.INSTANCE;
-    //private InputManager im = InputManager.INSTANCE;
     private ManagerOfChannels(){}
 
     public void changeMagistralData(short tempDec) {
@@ -64,6 +63,7 @@ public class ManagerOfChannels {
     public void setDataFromPC() throws NoImageException{
         String PCtoHex = converters.UInt16ToHex(data.PC);
         logger.info("PC: {}, PCtoHex: {}",data.PC,PCtoHex);
+
         if (mwc.digitalPanelCounter > 3){
             for (int i = 0, k = 0 ; i < 6; i++) {
                 if (i<4) {
@@ -74,10 +74,12 @@ public class ManagerOfChannels {
                         data.addressValueArray[i] = DigitalPanelButton._0;
                         mwc.digitalPanel[i].setIcon(img.getImage(ImageResources.getImageResources(data.addressValueArray[i])));
                     } else {
-                        data.addressValueArray[i] = DigitalPanelButton.getDigitalPanelBtn(String.valueOf(memory.RAM.get(PCtoHex)).charAt(k++));
+                        data.addressValueArray[i] = DigitalPanelButton.getDigitalPanelBtn(Integer.toHexString(memory.RAM.get(PCtoHex)).charAt(k++));
                         mwc.digitalPanel[i].setIcon(img.getImage(ImageResources.getImageResources(data.addressValueArray[i])));
                     }
                 }
+                changeMagistralData(memory.RAM.get(PCtoHex).shortValue());
+                changeMagistralAdress(PCtoHex);
             }
         }else {
             logger.warn("Call(setDataFromAddress)-> digitalPanelCounter: {}, addresesHex: {}",mwc.digitalPanelCounter, PCtoHex.length());

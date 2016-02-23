@@ -58,7 +58,7 @@ public class Commands {
                     mwc.status.setText("Запомнить значение и увеличить счетчик");
                     memory.RAM.put(temp,Integer.valueOf(data.addressValueArray[4].text+data.addressValueArray[5].text,16));
                     logger.info("Data to RAM: {}",Integer.valueOf(data.addressValueArray[4].text+data.addressValueArray[5].text,16));
-                    data.PC = data.PC+1;
+                    data.PC++;
                     moc.setDataFromPC();
                     mwc.digitalPanelCounter = 4;
                 }
@@ -66,6 +66,23 @@ public class Commands {
                 {
                     mwc.status.setText("Адреса с 0x0000 по 0x07FF недоступны для записи");
 
+                }
+            }
+        }
+    }
+    public void reduce(){
+        if (data.process == Processes.FINDING_REGISTER){
+
+        }
+        if (data.process == Processes.FINDING_ADDRESSES || data.process == Processes.RECORD){
+            mwc.status.setText("Отыскание адреса");
+            if (mwc.digitalPanelCounter == 4)
+            {
+                data.PC--;
+                try {
+                    moc.setDataFromPC();
+                } catch (NoImageException e) {
+                    e.printStackTrace();
                 }
             }
         }
