@@ -17,59 +17,40 @@ public class ManagerOfChannels {
     private MainWindowController mwc = MainWindowController.INSTANCE;
     private Data data = Data.INSTANCE;
     private Memory memory = Memory.INSTANCE;
-    private ManagerOfChannels(){}
+
+    private ManagerOfChannels() {}
 
     public void changeMagistralData(short tempDec) {
         for (int i = 0; i < 8; i++) {
             if (converters.GetByte(tempDec, i)) {
-                try {
-                    mwc.magistralData[7-i].setIcon(img.getImage(ImageResources.ON));
-                } catch (NoImageException e) {
-                    e.printStackTrace();
-                }
+                mwc.magistralData[7 - i].setIcon(img.getImage(ImageResources.ON));
             } else {
-                try {
-                    mwc.magistralData[7-i].setIcon(img.getImage(ImageResources.OFF));
-                } catch (NoImageException e) {
-                    e.printStackTrace();
-                }
+                mwc.magistralData[7 - i].setIcon(img.getImage(ImageResources.OFF));
             }
         }
     }
-    public void changeMagistralAdress(String tempHex)
-    {
+
+    public void changeMagistralAdress(String tempHex) {
         int tempDec = Integer.parseInt(tempHex, 16);
-        for (int i = 0; i < 16; i++)
-        {
-            if (converters.GetUShort(tempDec, i))
-            {
-                try {
-                    mwc.magistralAddreses[15-i].setIcon(img.getImage(ImageResources.ON));
-                } catch (NoImageException e) {
-                    e.printStackTrace();
-                }
-            }
-            else
-            {
-                try {
-                    mwc.magistralAddreses[15-i].setIcon(img.getImage(ImageResources.OFF));
-                } catch (NoImageException e) {
-                    e.printStackTrace();
-                }
+        for (int i = 0; i < 16; i++) {
+            if (converters.GetUShort(tempDec, i)) {
+                mwc.magistralAddreses[15 - i].setIcon(img.getImage(ImageResources.ON));
+            } else {
+                mwc.magistralAddreses[15 - i].setIcon(img.getImage(ImageResources.OFF));
             }
         }
     }
 
-    public void setDataFromPC() throws NoImageException{
+    public void setDataFromPC() throws NoImageException {
         String PCtoHex = converters.UInt16ToHex(data.PC);
-        logger.info("PC: {}, PCtoHex: {}",data.PC,PCtoHex);
+        logger.info("PC: {}, PCtoHex: {}", data.PC, PCtoHex);
 
-        if (mwc.digitalPanelCounter > 3){
-            for (int i = 0, k = 0 ; i < 6; i++) {
-                if (i<4) {
-                        data.addressValueArray[i] = DigitalPanelButton.getDigitalPanelBtn(PCtoHex.charAt(i));
-                        mwc.digitalPanel[i].setIcon(img.getImage(ImageResources.getImageResources(data.addressValueArray[i])));
-                }else {
+        if (mwc.digitalPanelCounter > 3) {
+            for (int i = 0, k = 0; i < 6; i++) {
+                if (i < 4) {
+                    data.addressValueArray[i] = DigitalPanelButton.getDigitalPanelBtn(PCtoHex.charAt(i));
+                    mwc.digitalPanel[i].setIcon(img.getImage(ImageResources.getImageResources(data.addressValueArray[i])));
+                } else {
                     if (memory.RAM.get(PCtoHex) == 0) {
                         data.addressValueArray[i] = DigitalPanelButton._0;
                         mwc.digitalPanel[i].setIcon(img.getImage(ImageResources.getImageResources(data.addressValueArray[i])));
@@ -81,8 +62,8 @@ public class ManagerOfChannels {
                 changeMagistralData(memory.RAM.get(PCtoHex).shortValue());
                 changeMagistralAdress(PCtoHex);
             }
-        }else {
-            logger.warn("Call(setDataFromAddress)-> digitalPanelCounter: {}, addresesHex: {}",mwc.digitalPanelCounter, PCtoHex.length());
+        } else {
+            logger.warn("Call(setDataFromAddress)-> digitalPanelCounter: {}, addresesHex: {}", mwc.digitalPanelCounter, PCtoHex.length());
         }
 
     }
