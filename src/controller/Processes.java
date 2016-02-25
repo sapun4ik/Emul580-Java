@@ -16,6 +16,12 @@ public enum Processes {
         STEP_CYCLE("Шаг цикла");
 
         public final String text;
+        public static Processes getProcess(String name){
+                for (Processes p :Processes.values()) {
+                        if (p.text.equals(name)) return p;
+                }
+                return null;
+        }
     Processes(final String text){
             this.text = text;
         }

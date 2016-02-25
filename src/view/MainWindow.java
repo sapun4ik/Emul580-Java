@@ -2,10 +2,16 @@ package view;
 import controller.*;
 import model.ImageResources;
 import model.Images;
+import model.RecoveryData;
+import model.SaveData;
+import org.xml.sax.SAXException;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -21,7 +27,6 @@ public class MainWindow extends JFrame {
     Images img = Images.INSTANCE;
     MainWindowController mwc = MainWindowController.INSTANCE;
     ActionButtonController actionBtnCont = ActionButtonController.INSTANCE;
-
 
     public void init() {
         setTitle("Эмулятор микроЭВМ УМПК-580(I8080)");
@@ -277,6 +282,24 @@ public class MainWindow extends JFrame {
                 setCursor(new Cursor(Cursor.HAND_CURSOR));
                 add(new JMenu("Файл"){{
                     setPreferredSize(new Dimension(45, 20));
+                    add(new JMenuItem("Сохранить данные"){{
+                        addActionListener(e -> new SaveData().save());
+
+                    }});
+                    add(new JMenuItem("Восстановить данные"){{
+                        addActionListener(e -> {
+                            try {
+                                new RecoveryData().recovery();
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            } catch (SAXException ex) {
+                                ex.printStackTrace();
+                            } catch (ParserConfigurationException ex) {
+                                ex.printStackTrace();
+                            }
+                        });
+
+                    }});
                     add(new JMenuItem("Горячие клавиши"));
                     add(new JMenuItem("Команды"));
                     add(new JMenuItem("О программе"));

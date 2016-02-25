@@ -9,22 +9,22 @@ import controller.Processes;
 public class Data {
     final public static Data INSTANCE = new Data();
     private Data(){}
-    public static byte input; // байт тумблера ввода
-    public static byte output;
+    public short input; // байт тумблера ввода
+    public short output;
     public Processes process = Processes.STOP;
-    public static String PCadr = "";
-    public static byte A; // аккумулятор
-    public static byte B; // Регистр
-    public static byte C; // Регистр
-    public static byte D; // Регистр
-    public static byte E; // Регистр
-    public static byte H; // Регистр
-    public static byte L; // Регистр
+    //public Processes process;
+    public String PCadr = "";
+    public Short A; // аккумулятор
+    public Short B; // Регистр
+    public Short C; // Регистр
+    public Short D; // Регистр
+    public Short E; // Регистр
+    public Short H; // Регистр
+    public Short L; // Регистр
     public int PC = 0x800; // Счетчик команд
-    public static short PSW; //  — регистр флагов
-    public static short SP = 0xfb0; // указатель стека 4016
-    public static boolean PC_Flag;
-    public static int numberReg;
-    public static boolean executionProgramms = false;
-    public DigitalPanelButton[] addressValueArray = new DigitalPanelButton[6];
+    public short PSW; //  — регистр флагов
+    public short SP = 0xfb0; // указатель стека 4016
+    public boolean PC_Flag;
+    public int numberReg;
+    public DigitalPanelButton[] addressValueArray = {DigitalPanelButton._0,DigitalPanelButton._0,DigitalPanelButton._0,DigitalPanelButton._0,DigitalPanelButton._0,DigitalPanelButton._0};
 }

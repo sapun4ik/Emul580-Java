@@ -1,19 +1,17 @@
 package view;
 
-import model.Memory;
+import org.xml.sax.SAXException;
 
-import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 /**
  * Created by Анатолий on 18.02.2016.
  */
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException, AWTException {
+    public static void main(String[] args) throws InterruptedException, AWTException, ParserConfigurationException, SAXException, IOException {
 //        javax.swing.SwingUtilities.invokeLater(new Runnable() {
 //            public void run() {
 //                createAndShowGUI();
@@ -21,6 +19,7 @@ public class Main {
 //        });
 
         new MainWindow().init();
+
 
 
     }
